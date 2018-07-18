@@ -106,6 +106,14 @@ class BOTAN_PUBLIC_API(2,0) GCM_Decryption final : public GCM_Mode
       size_t process(uint8_t buf[], size_t size) override;
 
       void finish(secure_vector<uint8_t>& final_block, size_t offset = 0) override;
+       // XXX Sunny
+       bool last_message_valid() const // must be called after finish()
+       {
+           return m_valid_message;
+       }
+   private:
+       bool m_valid_message = false;
+
    };
 
 }
